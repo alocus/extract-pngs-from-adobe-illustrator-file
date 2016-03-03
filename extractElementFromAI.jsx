@@ -1,7 +1,7 @@
 function exportFileToPNG(dest, artBoardIndex)
 {
-    var exportOptions = new ExportOptionsPNG24(); // or ExportOptionsPNG24
-    var type = ExportType.PNG24; // or ExportType.PNG24
+    var exportOptions = new ExportOptionsPNG24(); // or ExportOptionsPNG8
+    var type = ExportType.PNG24; // or ExportType.PNG8
     var file = new File(dest + ".png");
 
     exportOptions.artBoardClipping = true;
@@ -9,8 +9,11 @@ function exportFileToPNG(dest, artBoardIndex)
     exportOptions.transparency = true;
     exportOptions.qualitySetting = 72;
     exportOptions.saveMultipleArtboards = false;
+    
+    // Set the size of the extracted element
     exportOptions.verticalScale = 500;
     exportOptions.horizontalScale = 500;
+    
     exportOptions.artboardRange = "" + artBoardIndex;
     app.activeDocument.exportFile( file, type, exportOptions );
 }
